@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div id="login">
+        {% if request.user.is_authenticated %}
+            <div class="alert-info" style="padding: 40px; background-color: rgba(209, 236, 241, 0.7)">
+                Olá {{ request.user }}
+                <a href="/logout" class="btn btn-danger" style="margin-top: -7px">Sair</a>
+            </div>
+        {% else %}
+            <form method="post" class="form-align-center" id="form-login">
+                {% csrf_token %}
+                <div class="text-center" style="padding: 0px 0px 9px; color: orangered"><h2>Arndt Systems</h2></div>
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-dark" value="Entrar">
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}

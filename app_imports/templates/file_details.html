@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Importações{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Detalhes do arquivo: {{ filename }}</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th scope="col">Filme</th>
+                <th scope="col">Duração</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+                {% for key, value in d.items %}
+                    <tr>
+                        <th scope="row">{{ key }}</th>
+                        <th scope="row">{{ value }}</th>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

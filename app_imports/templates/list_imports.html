@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Importações{% endblock %}
+
+{% block content %}
+
+<table class="table">
+<thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Arquivo</th>
+        <th scope="col">Ações</th>
+        <th scope="col"><a class="btn btn-primary" href="upload">Upload</a></th>
+    </tr>
+</thead>
+<tbody>
+        {% for f in files %}
+            <tr>
+                <th scope="row">{{ f.id }}</th>
+                <th scope="row">{{ f.file }}</th>
+                <th scope="row">
+                    <a class="btn btn-primary" href="read/{{ f.id }}">Detalhes</a>
+                    <a class="btn btn-danger" href="delete/{{ f.id }}">Deletar</a>
+                </th>
+            </tr>
+        {% endfor %}
+</tbody>
+</table>
+{% endblock %}

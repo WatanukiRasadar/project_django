@@ -1,0 +1,53 @@
+.form-align-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -ms-transform: translateY(-50%) translateX(-50%);
+    -o-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+}
+
+#login{
+    background-image: url('/static/images/BackgroundLogin.jpg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+#form-login{
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #CCC;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#form-login > input[type="submit"]{
+    width: 100%;
+}
+
+#form-login input{
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+#form-login input:focus{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    -webkit-transition: background-color linear 500ms;
+    -moz-transition: background-color linear 500ms;
+    -ms-transition: background-color linear 500ms;
+    -o-transition: background-color linear 500ms;
+    transition: background-color linear 500ms;
+}
+
+#form-login label{
+    /*color: #FFF;*/
+}
+
+#form-login input#id_password{
+    margin-left: 4px;
+}

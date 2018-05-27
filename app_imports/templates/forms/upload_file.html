@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="POST" action="upload" class="form-align-center" enctype="multipart/form-data">
+    <div class="form-group">
+        {% csrf_token %}
+        {{ form }}
+        {{ form.small }}
+        <small>Envie um arquivo .txt ou .csv somente</small>
+    </div>
+    <input type="submit" value="Enviar" class="btn btn-primary">
+</form>
+
+{% endblock  %}}
