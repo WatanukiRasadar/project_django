@@ -6,7 +6,7 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th>Detalhes do arquivo: {{ filename }}</th>
+                <th>Detalhes do arquivo: {{ file.filename }}</th>
                 <th></th>
             </tr>
             <tr>
@@ -15,13 +15,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for d in data %}
-                {% for key, value in d.items %}
-                    <tr>
-                        <th scope="row">{{ key }}</th>
-                        <th scope="row">{{ value }}</th>
-                    </tr>
-                {% endfor %}
+        <tbody>
+            {% for row in object %}
+                <tr>
+                    {% for column in row %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
             {% endfor %}
         </tbody>
     </table>

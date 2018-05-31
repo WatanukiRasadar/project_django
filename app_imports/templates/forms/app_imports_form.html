@@ -5,8 +5,8 @@
 <form method="POST" action="upload" class="form-align-center" enctype="multipart/form-data">
     <div class="form-group">
         {% csrf_token %}
-        {{ form }}
-        {{ form.small }}
+        {{ form.as_p }}
+        <br />
         <small>Envie um arquivo .txt ou .csv somente</small>
     </div>
     <input type="submit" value="Enviar" class="btn btn-primary">

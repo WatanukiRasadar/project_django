@@ -1,37 +1,50 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from . import models
-from .forms import ImportFile
+from django.http import HttpResponse
+from django.views.generic import DetailView, ListView, CreateView, DeleteView
+from app_imports.forms import ImportFileForm
+import os
 
-# Create your views here.
-def index(request):
-    if request.user.is_authenticated:
-        files = models.File.getAllFiles(models.File)
-        return render(request, 'list_imports.html', {'files': files})
-    else:
-        return render(request, 'user_not_logged.html')
+class ImportsListView(ListView):
+    model = models.File
+    template_name = "list_imports.html"
 
-def read(request, id):
-    if request.user.is_authenticated:
-        data = models.File.readFile(models.File, id)
-        return render(request, 'file_details.html', {'data': data[0], 'filename': data[1]})
-    else:
-        return HttpResponse("Usuário não logado")
+class ImportDetailView(DetailView):
+    model = models.File
+    template_name = "file_details.html"
 
-def upload(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = ImportFile(request.POST, request.FILES)
-            file = request.FILES['file']
-            if form.is_valid():
-                models.File.uploadFile(models.File, file)
-            else:
-                return HttpResponse("Formulário Inválido")
-        else:
-            form = ImportFile()
-        return render(request, 'forms/upload_file.html', {'form': form})
-    else:
-        return render(request, 'user_not_logged.html')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        data = []
+        try:
+            with open(str(self.object.filename), mode="r") as details:
+                for detail in details:
+                    try:
+                        data.append(detail.split(';', 1))
+                    except ValueError:
+                        print("Linha %s com valor incorreto" % (detail))
+                        pass
+                context['object'] = data
+                return context
+        except IOError:
+            print("Arquivo não encontrado")
+            pass
 
-def removeFile(request, id):
-    return models.File.deleteFile(models.File, id)
+class ImportCreateView(CreateView):
+    model = models.File
+    form_class = ImportFileForm
+    success_url = '/admin/imports'
+    template_name = "forms/app_imports_form.html"
+
+class ImportDeleteView(DeleteView):
+    model = models.File
+    success_url = "/admin/imports"
+    template_name = 'forms/file_confirm_delete.html'
+
+    def delete(self, request, *args, **kwargs):
+        super().delete(request, *args, **kwargs)
+        try:
+            os.remove(str(self.object.filename))
+            return HttpResponse("Success Delete")
+        except IOError:
+            return HttpResponse("Arquivo não encontrado")
+            pass

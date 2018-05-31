@@ -1,9 +1,11 @@
 from django import forms
+from .models import File
 
-class ImportFile(forms.Form):
-    file = forms.FileField()
+class ImportFileForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['file'].label = "Upload do Arquivo"
-        self.fields['file'].widget.attrs.update({'class': 'form-control-file'})
+    class Meta:
+        model = File
+        fields = ['filename']
+        labels = {
+            'file': 'Upload do Arquivo'
+        }

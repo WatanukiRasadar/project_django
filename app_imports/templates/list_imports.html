@@ -14,13 +14,13 @@
     </tr>
 </thead>
 <tbody>
-        {% for f in files %}
+        {% for file in object_list %}
             <tr>
-                <th scope="row">{{ f.id }}</th>
-                <th scope="row">{{ f.file }}</th>
+                <th scope="row">{{ file.id }}</th>
+                <th scope="row">{{ file.filename }}</th>
                 <th scope="row">
-                    <a class="btn btn-primary" href="read/{{ f.id }}">Detalhes</a>
-                    <a class="btn btn-danger" href="delete/{{ f.id }}">Deletar</a>
+                    <a class="btn btn-primary" href="{{ file.id }}/details">Detalhes</a>
+                    <a class="btn btn-danger" href="{{ file.id }}/delete">Deletar</a>
                 </th>
             </tr>
         {% endfor %}
