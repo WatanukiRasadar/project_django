@@ -130,6 +130,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "project_one/static"),
+    os.path.join(BASE_DIR, "node_modules"),
 ]
 
 LOGIN_REDIRECT_URL = 'index'

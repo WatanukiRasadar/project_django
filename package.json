@@ -1,0 +1,22 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RicardoArndt/project_django.git"
+  },
+  "author": "Ricardo Guilherme Arndt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RicardoArndt/project_django/issues"
+  },
+  "homepage": "https://github.com/RicardoArndt/project_django#readme",
+  "dependencies": {
+    "bootstrap": "^4.1.1"
+  }
+}
